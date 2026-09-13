@@ -1,14 +1,13 @@
 /* Dr. Sherin Mansour — language toggle, FAQ accordion, mobile nav */
 (function () {
   var html = document.documentElement;
-  var TITLES = { ar: 'د. شيرين منصور | استشارية الجلدية والتجميل والليزر',
-                 en: 'Dr. Sherin Mansour | Consultant Dermatology, Aesthetics & Laser' };
 
   function setLang(lang) {
     lang = (lang === 'en') ? 'en' : 'ar';
     html.setAttribute('lang', lang);
     html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-    document.title = TITLES[lang];
+    var t = html.getAttribute('data-title-' + lang);
+    if (t) document.title = t;
     try { localStorage.setItem('lang', lang); } catch (e) {}
     closeMenus();
   }
