@@ -50,10 +50,10 @@ html[lang="en"] .h2{font-size:clamp(32px,5vw,54px)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--body);
   font-weight:500;font-size:clamp(14px,1.1vw,16px);padding:14px 28px;border-radius:100px;
   border:1px solid transparent;cursor:pointer;transition:.25s ease;white-space:nowrap}
-.btn-p{background:var(--coffee);color:var(--ivory)}
-.btn-p:hover{background:var(--ink);color:var(--ivory)}
+.btn-p{background:var(--ink);color:var(--ivory)}
+.btn-p:hover{background:var(--coffee-deep);color:var(--ivory)}
 .btn-o{background:transparent;color:var(--ink);border-color:var(--ink)}
-.btn-o:hover{background:var(--coffee);color:var(--ivory)}
+.btn-o:hover{background:var(--ink);color:var(--ivory)}
 .btn-ivory{background:var(--ivory);color:var(--ink)} .btn-ivory:hover{background:var(--ink);color:var(--ivory)}
 
 /* ---------- header ---------- */
