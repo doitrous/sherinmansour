@@ -240,6 +240,28 @@ html[lang="en"] .ctag{letter-spacing:.08em;text-transform:uppercase;font-size:11
 .ctaband h2{color:#fff;font-size:clamp(30px,4.8vw,54px);max-width:780px;margin-inline:auto}
 .ctaband p{color:var(--sand-deep);margin:18px auto 32px;max-width:560px;font-size:clamp(16px,1.5vw,18px)}
 
+/* ---------- booking form ---------- */
+.book-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,4vw,56px);align-items:center}
+.book-intro{align-self:center}
+.book-form{background:var(--white);border:1px solid var(--line);border-radius:24px;
+  padding:clamp(26px,3vw,40px);box-shadow:0 40px 80px -50px rgba(51,41,31,.4);display:grid;gap:18px}
+.book-form .frow{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.book-form label{display:grid;gap:8px;font-size:14px;font-weight:600;color:var(--ink-2)}
+.book-form input,.book-form select,.book-form textarea{font-family:var(--body);font-size:15px;font-weight:400;
+  color:var(--ink);background:var(--ivory);border:1px solid var(--line);border-radius:12px;padding:13px 15px;
+  width:100%;box-sizing:border-box;transition:.2s ease}
+.book-form textarea{resize:vertical;min-height:88px}
+.book-form input:focus,.book-form select:focus,.book-form textarea:focus{outline:none;
+  border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px var(--gold-line)}
+.book-form select{appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A9854A' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:left 15px center}
+html[dir="ltr"] .book-form select{background-position:right 15px center}
+.book-form button[type="submit"]{margin-top:4px;justify-self:start}
+.form-status{margin:0;font-size:14px;font-weight:500;min-height:1px}
+.form-status.ok{color:var(--gold)}
+.form-status.err{color:#B04A3A}
+
 /* ---------- footer ---------- */
 footer{background:var(--coffee-deep);color:var(--sand-deep)}
 .fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:36px;padding-block:64px 36px}
@@ -292,6 +314,7 @@ footer{background:var(--coffee-deep);color:var(--sand-deep)}
   .map .grid{grid-template-columns:1fr}
   .map-embed{min-height:320px;order:2}
   .map-embed iframe{min-height:320px}
+  .book-grid{grid-template-columns:1fr}
   .rcards{grid-template-columns:1fr}
   .tcards{grid-template-columns:repeat(2,1fr)}
   .faq .grid{grid-template-columns:1fr}
@@ -307,6 +330,8 @@ footer{background:var(--coffee-deep);color:var(--sand-deep)}
   .stat:nth-child(2){border:none}
   .stat:nth-child(3),.stat:nth-child(4){border-top:1px solid rgba(255,255,255,.1)}
   .tcards{grid-template-columns:1fr;margin-top:36px}
+  .book-form .frow{grid-template-columns:1fr}
+  .book-form button[type="submit"]{width:100%;justify-self:stretch}
   .cgrid{grid-template-columns:1fr}
   .edu .erow{grid-template-columns:1fr 1fr}
   .rg{grid-template-columns:repeat(2,1fr)}

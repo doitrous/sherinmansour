@@ -69,4 +69,63 @@
     // close mobile menu when a nav link is tapped
     if (e.target.closest('.navlinks a')) closeMenus();
   });
+
+  // ---- booking form ----
+  // Emails the clinic via Web3Forms when a key is set; otherwise opens WhatsApp
+  // (so the form works immediately on GitHub Pages with no account).
+  // To email instead: get a free key for sharo1710@hotmail.com at https://web3forms.com
+  // and paste it below.
+  var WEB3FORMS_KEY = '';
+
+  document.querySelectorAll('.book-form').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var ar = html.getAttribute('lang') === 'ar';
+      var f = new FormData(form);
+      var name = (f.get('name') || '').trim();
+      var phone = (f.get('phone') || '').trim();
+      var treatment = (f.get('treatment') || '').trim();
+      var message = (f.get('message') || '').trim();
+      var status = form.querySelector('.form-status');
+      status.className = 'form-status';
+
+      if (!name || !phone) {
+        status.textContent = ar ? 'يرجى إدخال الاسم ورقم الجوال.' : 'Please enter your name and phone number.';
+        status.classList.add('err');
+        return;
+      }
+
+      function toWhatsApp() {
+        var lines = [
+          ar ? 'طلب حجز استشارة' : 'Consultation booking request',
+          (ar ? 'الاسم: ' : 'Name: ') + name,
+          (ar ? 'الجوال: ' : 'Phone: ') + phone,
+          treatment ? (ar ? 'الخدمة: ' : 'Treatment: ') + treatment : '',
+          message ? (ar ? 'ملاحظات: ' : 'Notes: ') + message : ''
+        ].filter(Boolean);
+        window.open('https://wa.me/966501659014?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+        form.reset();
+        status.textContent = ar ? 'يتم فتح واتساب لإتمام حجزكِ…' : 'Opening WhatsApp to complete your booking…';
+        status.classList.add('ok');
+      }
+
+      if (!WEB3FORMS_KEY) { toWhatsApp(); return; }
+
+      status.textContent = ar ? 'جارٍ الإرسال…' : 'Sending…';
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: (ar ? 'طلب حجز جديد — ' : 'New booking request — ') + name,
+          from_name: name, name: name, phone: phone, treatment: treatment, message: message
+        })
+      }).then(function (r) { return r.json(); }).then(function (d) {
+        if (!d.success) throw new Error(d.message || 'error');
+        form.reset();
+        status.textContent = ar ? 'تم إرسال طلبكِ بنجاح، سنتواصل معكِ قريباً.' : 'Your request was sent — we will contact you shortly.';
+        status.classList.add('ok');
+      }).catch(function () { toWhatsApp(); });
+    });
+  });
 })();
