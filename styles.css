@@ -55,6 +55,9 @@ html[lang="en"] .h2{font-size:clamp(32px,5vw,54px)}
 .btn-o{background:transparent;color:var(--ink);border-color:var(--ink)}
 .btn-o:hover{background:var(--ink);color:var(--ivory)}
 .btn-ivory{background:var(--ivory);color:var(--ink)} .btn-ivory:hover{background:var(--ink);color:var(--ivory)}
+.btn-p{box-shadow:0 14px 30px -18px rgba(51,41,31,.55)}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
 
 /* ---------- header ---------- */
 header{position:sticky;top:0;z-index:40;background:rgba(251,247,240,.9);
@@ -123,7 +126,7 @@ html[lang="en"] .hero h1{font-size:clamp(42px,7.2vw,78px);line-height:1.02}
 .stat span{display:block;margin-top:10px;color:var(--sand-deep);font-size:14px;letter-spacing:.02em}
 
 /* ---------- treatments ---------- */
-.tcards{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:56px}
+.tcards{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px}
 .tcard{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:clamp(28px,3vw,38px);
   position:relative;transition:.3s ease}
 .tcard:hover{border-color:var(--gold-line);box-shadow:0 30px 60px -40px rgba(51,41,31,.4);transform:translateY(-3px)}
@@ -288,6 +291,7 @@ footer{background:var(--coffee-deep);color:var(--sand-deep)}
   .map-embed{min-height:320px;order:2}
   .map-embed iframe{min-height:320px}
   .rcards{grid-template-columns:1fr}
+  .tcards{grid-template-columns:repeat(2,1fr)}
   .faq .grid{grid-template-columns:1fr}
   /* mobile menu panel */
   .navlinks.open{display:flex;position:absolute;inset-inline:0;top:78px;flex-direction:column;
