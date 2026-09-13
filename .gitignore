@@ -1,0 +1,6 @@
+# Logo design working directory (delivered as a published Claude artifact,
+# not part of the deployed site). Contains a large canvas-editor bundle.
+logo-design/
+
+# OS cruft
+.DS_Store

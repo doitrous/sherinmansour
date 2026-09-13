@@ -56,8 +56,9 @@ html[lang="en"] .h2{font-size:clamp(32px,5vw,54px)}
 .btn-o:hover{background:var(--ink);color:var(--ivory)}
 .btn-ivory{background:var(--ivory);color:var(--ink)} .btn-ivory:hover{background:var(--ink);color:var(--ivory)}
 .btn-p{box-shadow:0 14px 30px -18px rgba(51,41,31,.55)}
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:translateY(0)}
+.btn:hover{transform:translateY(-1px)} .btn:active{transform:translateY(0)}
+/* keep phone numbers & latin handles rendering left-to-right inside RTL text */
+a[href^="tel:"],a[href^="https://wa.me"],a[href*="instagram"]{unicode-bidi:isolate}
 
 /* ---------- header ---------- */
 header{position:sticky;top:0;z-index:40;background:rgba(251,247,240,.9);
@@ -69,8 +70,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(251,247,240,.9);
   box-shadow:0 0 0 1px var(--ink),0 0 0 4px var(--gold-line),inset 0 0 0 1px var(--gold-line);position:relative}
 html[lang="en"] .mono{font-family:var(--display);font-style:italic}
 .svg-defs{position:absolute;width:0;height:0;overflow:hidden}
-.brandmark{width:78px;height:49px;flex:none;color:var(--gold);display:block}
-.fbrand .brandmark{color:var(--gold-soft)}
+.brandmark{width:auto;height:52px;flex:none;display:block}
 .brand b{font-family:var(--display);font-size:19px;font-weight:600;display:block;line-height:1.15;color:var(--gold)}
 html[lang="en"] .brand b{font-style:italic;letter-spacing:.01em}
 .brand span{font-size:12px;color:var(--muted);letter-spacing:.02em}
@@ -103,7 +103,7 @@ html[lang="en"] .hero h1{font-size:clamp(42px,7.2vw,78px);line-height:1.02}
 .frame{position:relative;aspect-ratio:4/5;border-radius:200px 200px 24px 24px;overflow:hidden;
   background:linear-gradient(160deg,var(--sand) 0%,var(--sand-deep) 100%);
   box-shadow:0 40px 80px -40px rgba(51,41,31,.4);border:1px solid var(--gold-line)}
-.frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1}
 .ph-label{position:absolute;inset:0;display:grid;place-content:center;text-align:center;
   color:var(--muted);font-size:12.5px;letter-spacing:.03em;padding:20px;gap:6px}
 .ph-label svg{opacity:.5;margin:0 auto 4px}
@@ -130,7 +130,9 @@ html[lang="en"] .hero h1{font-size:clamp(42px,7.2vw,78px);line-height:1.02}
 .tcard{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:clamp(28px,3vw,38px);
   position:relative;transition:.3s ease}
 .tcard:hover{border-color:var(--gold-line);box-shadow:0 30px 60px -40px rgba(51,41,31,.4);transform:translateY(-3px)}
-.tcard .no{position:absolute;inset-inline-end:32px;top:28px;font-family:var(--display);font-size:22px;color:var(--gold-soft);font-weight:600}
+.tcard .no{position:absolute;inset-inline-end:clamp(22px,3vw,32px);top:clamp(22px,3vw,28px);
+  font-family:var(--display);font-size:clamp(22px,2.6vw,26px);color:var(--gold-soft);font-weight:600;
+  line-height:1;white-space:nowrap;letter-spacing:.03em;font-variant-numeric:tabular-nums}
 .ticon{width:58px;height:58px;border-radius:15px;background:var(--cream);color:var(--gold);
   display:grid;place-items:center;margin-bottom:22px;border:1px solid var(--gold-line)}
 .tcard h3{font-size:clamp(22px,2.4vw,28px);font-weight:600;margin-bottom:12px}
@@ -170,7 +172,7 @@ html[lang="en"] .ctag{letter-spacing:.08em;text-transform:uppercase;font-size:11
 .about-photos .p2{position:absolute;inset-inline-start:-24px;bottom:-6px;width:52%;aspect-ratio:1/1;
   border-radius:18px;overflow:hidden;border:5px solid var(--ivory);position:absolute;
   background:linear-gradient(160deg,var(--blush),var(--sand));box-shadow:0 30px 50px -30px rgba(51,41,31,.4)}
-.about-photos img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.about-photos img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1}
 .about h2{font-size:clamp(32px,4.4vw,52px);margin:14px 0 6px}
 .about .role{color:var(--gold);font-size:16px;font-weight:500;margin-bottom:20px}
 .about p+p{margin-top:16px}
@@ -199,7 +201,7 @@ html[lang="en"] .ctag{letter-spacing:.08em;text-transform:uppercase;font-size:11
 .rg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .rg .cell{aspect-ratio:3/4;border-radius:16px;overflow:hidden;border:1px solid var(--gold-line);position:relative;
   background:linear-gradient(160deg,var(--sand),var(--blush))}
-.rg .cell img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.rg .cell img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1}
 .rg .cell .tag{position:absolute;inset-inline-start:12px;top:12px;background:var(--coffee);color:var(--ivory);
   font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;z-index:2}
 .note{margin-top:18px;font-size:13px;color:var(--muted);text-align:center}
@@ -304,15 +306,45 @@ footer{background:var(--coffee-deep);color:var(--sand-deep)}
   .stats .grid{grid-template-columns:repeat(2,1fr)}
   .stat:nth-child(2){border:none}
   .stat:nth-child(3),.stat:nth-child(4){border-top:1px solid rgba(255,255,255,.1)}
-  .tcards{grid-template-columns:1fr}
+  .tcards{grid-template-columns:1fr;margin-top:36px}
   .cgrid{grid-template-columns:1fr}
   .edu .erow{grid-template-columns:1fr 1fr}
   .rg{grid-template-columns:repeat(2,1fr)}
   .fgrid{grid-template-columns:1fr 1fr}
   .fbrand{grid-column:1 / -1}
+  .rev-head{gap:16px}
   .rev-head .grating{width:100%}
+  /* give the corner number breathing room and keep the icon clear of it */
+  .tcard{padding-top:26px}
+  .ticon{width:52px;height:52px;margin-bottom:18px}
+  /* pull decorative hero badges inward so they never clip at the screen edge */
+  .badge-float{inset-inline-start:8px;bottom:20px;padding:11px 14px}
+  .badge-top{inset-inline-end:8px;top:20px}
+  .cred-top{margin-bottom:36px}
+  .bigstat{gap:18px;padding:28px}
+  .bigstat b{font-size:clamp(52px,15vw,64px)}
 }
 @media (max-width:420px){
-  .fgrid{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr;gap:30px;text-align:start}
   header .brand span:not(.mono){display:none}
+  .edu .erow{grid-template-columns:1fr}
+  .rg{grid-template-columns:1fr 1fr}
+  .hero .cta{flex-direction:column;align-items:stretch}
+  .hero .cta .btn{width:100%}
+  .mbtns .btn,.faq .btn-o{width:100%}
+  .mbtns{flex-direction:column}
+  .fbottom{flex-direction:column;text-align:center;justify-content:center}
+  .fbottom .footer-legal{justify-content:center}
+}
+
+/* =================== POLISH =================== */
+/* accessible keyboard focus (invisible to mouse/touch users) */
+a:focus-visible,.btn:focus-visible,button:focus-visible,.lang-btn:focus-visible,
+.nav-toggle:focus-visible,.qitem .q:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* gentle scroll reveal — only when the visitor hasn't asked for reduced motion */
+@media (prefers-reduced-motion: no-preference){
+  .reveal{opacity:0;transform:translateY(20px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
 }
