@@ -334,3 +334,20 @@ footer{background:var(--coffee-deep);color:var(--sand-deep)}
   .fbottom{flex-direction:column;text-align:center;justify-content:center}
   .fbottom .footer-legal{justify-content:center}
 }
+
+/* =================== POLISH =================== */
+/* accessible keyboard focus (invisible to mouse/touch users) */
+a:focus-visible,.btn:focus-visible,button:focus-visible,.lang-btn:focus-visible,
+.nav-toggle:focus-visible,.qitem .q:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* faint brand-bloom watermark behind the closing call-to-action */
+.ctaband::before{content:"";position:absolute;z-index:0;left:50%;top:50%;
+  width:min(62vw,500px);aspect-ratio:100/120;transform:translate(-50%,-50%);pointer-events:none;opacity:.06;
+  background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20120%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C2A264%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M50%2088%20C34%2078%2022%2064%2022%2048%20C38%2056%2046%2070%2050%2088%20Z%22%2F%3E%3Cpath%20d%3D%22M50%2088%20C66%2078%2078%2064%2078%2048%20C62%2056%2054%2070%2050%2088%20Z%22%2F%3E%3Cpath%20d%3D%22M50%2088%20C38%2070%2030%2052%2032%2034%20C46%2046%2050%2066%2050%2088%20Z%22%2F%3E%3Cpath%20d%3D%22M50%2088%20C62%2070%2070%2052%2068%2034%20C54%2046%2050%2066%2050%2088%20Z%22%2F%3E%3Cpath%20d%3D%22M50%2088%20C43%2066%2043%2046%2050%2026%20C57%2046%2057%2066%2050%2088%20Z%22%2F%3E%3Cpath%20d%3D%22M26%2096%20C38%2088%2062%2088%2074%2096%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23C2A264%22%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2218%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2212%22%20r%3D%223.2%22%2F%3E%3Ccircle%20cx%3D%2258%22%20cy%3D%2218%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2288%22%20r%3D%223.2%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center/contain no-repeat}
+
+/* gentle scroll reveal — only when the visitor hasn't asked for reduced motion */
+@media (prefers-reduced-motion: no-preference){
+  .reveal{opacity:0;transform:translateY(20px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+}
